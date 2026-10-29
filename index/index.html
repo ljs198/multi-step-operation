@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多步骤操作页面</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./image/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <main class="card">
+        <!-- 左侧步骤指示器 -->
+        <aside class="sidebar">
+            <ol class="steps">
+                <li class="step-item is-active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">
+                        <span class="step-kicker">步骤 1</span>
+                        <span class="step-title">您的信息</span>
+                    </span>
+                </li>
+                <li class="step-item" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">
+                        <span class="step-kicker">步骤 2</span>
+                        <span class="step-title">选择套餐</span>
+                    </span>
+                </li>
+                <li class="step-item" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">
+                        <span class="step-kicker">步骤 3</span>
+                        <span class="step-title">附加服务</span>
+                    </span>
+                </li>
+                <li class="step-item" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-label">
+                        <span class="step-kicker">步骤 4</span>
+                        <span class="step-title">汇总</span>
+                    </span>
+                </li>
+            </ol>
+        </aside>
+
+        <!-- 右侧内容区 -->
+        <div class="content">
+            <!-- 步骤 1：个人信息 -->
+            <section class="form-step is-active" data-step="1">
+                <header class="form-header">
+                    <h1>个人信息</h1>
+                    <p>请提供您的姓名、电子邮箱和电话号码。</p>
+                </header>
+                <form id="form-info" novalidate>
+                    <div class="field">
+                        <div class="field-head">
+                            <label for="name">姓名</label>
+                            <span class="error" data-error-for="name"></span>
+                        </div>
+                        <input type="text" id="name" name="name" placeholder="例如 张三" autocomplete="name">
+                    </div>
+                    <div class="field">
+                        <div class="field-head">
+                            <label for="email">电子邮箱</label>
+                            <span class="error" data-error-for="email"></span>
+                        </div>
+                        <input type="email" id="email" name="email" placeholder="例如 zhangsan@163.com" autocomplete="email">
+                    </div>
+                    <div class="field">
+                        <div class="field-head">
+                            <label for="phone">电话号码</label>
+                            <span class="error" data-error-for="phone"></span>
+                        </div>
+                        <input type="tel" id="phone" name="phone" placeholder="例如 +86 138 0000 0000" autocomplete="tel">
+                    </div>
+                </form>
+            </section>
+
+            <!-- 步骤 2：选择套餐 -->
+            <section class="form-step" data-step="2">
+                <header class="form-header">
+                    <h1>选择您的套餐</h1>
+                    <p>您可以选择按月或按年计费。</p>
+                </header>
+
+                <div class="plan-grid">
+                    <label class="plan-card is-selected">
+                        <input type="radio" name="plan" value="arcade" class="sr-input" checked>
+                        <img src="./image/icon-arcade.svg" alt="" class="plan-icon">
+                        <div class="plan-text">
+                            <span class="plan-name">街机</span>
+                            <span class="plan-price" data-plan="arcade">$9/月</span>
+                            <span class="plan-note">免费 2 个月</span>
+                        </div>
+                    </label>
+                    <label class="plan-card">
+                        <input type="radio" name="plan" value="advanced" class="sr-input">
+                        <img src="./image/icon-advanced.svg" alt="" class="plan-icon">
+                        <div class="plan-text">
+                            <span class="plan-name">进阶</span>
+                            <span class="plan-price" data-plan="advanced">$12/月</span>
+                            <span class="plan-note">免费 2 个月</span>
+                        </div>
+                    </label>
+                    <label class="plan-card">
+                        <input type="radio" name="plan" value="pro" class="sr-input">
+                        <img src="./image/icon-pro.svg" alt="" class="plan-icon">
+                        <div class="plan-text">
+                            <span class="plan-name">专业版</span>
+                            <span class="plan-price" data-plan="pro">$15/月</span>
+                            <span class="plan-note">免费 2 个月</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="billing-toggle">
+                    <span class="billing-option is-active" data-billing="monthly">按月</span>
+                    <button type="button" class="switch" id="billing-switch" role="switch" aria-checked="false" aria-label="切换为按年计费">
+                        <span class="knob"></span>
+                    </button>
+                    <span class="billing-option" data-billing="yearly">按年 <span class="billing-discount">免费 2 个月</span></span>
+                </div>
+
+                <p class="form-error" data-error-for="plan"></p>
+            </section>
+
+            <!-- 步骤 3：附加服务 -->
+            <section class="form-step" data-step="3">
+                <header class="form-header">
+                    <h1>选择附加服务</h1>
+                    <p>附加服务可提升您的游戏体验。</p>
+                </header>
+
+                <div class="addon-list">
+                    <label class="addon-card">
+                        <input type="checkbox" name="addon" value="online" class="sr-input">
+                        <span class="checkbox"></span>
+                        <span class="addon-text">
+                            <span class="addon-name">在线服务</span>
+                            <span class="addon-desc">畅享多人联机对战</span>
+                        </span>
+                        <span class="addon-price" data-addon="online">+$1/月</span>
+                    </label>
+                    <label class="addon-card">
+                        <input type="checkbox" name="addon" value="storage" class="sr-input">
+                        <span class="checkbox"></span>
+                        <span class="addon-text">
+                            <span class="addon-name">更大的存储空间</span>
+                            <span class="addon-desc">额外 1TB 云存档</span>
+                        </span>
+                        <span class="addon-price" data-addon="storage">+$2/月</span>
+                    </label>
+                    <label class="addon-card">
+                        <input type="checkbox" name="addon" value="profile" class="sr-input">
+                        <span class="checkbox"></span>
+                        <span class="addon-text">
+                            <span class="addon-name">自定义个人资料</span>
+                            <span class="addon-desc">为您的个人主页自定义主题</span>
+                        </span>
+                        <span class="addon-price" data-addon="profile">+$2/月</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- 步骤 4：汇总确认 -->
+            <section class="form-step" data-step="4">
+                <header class="form-header">
+                    <h1>即将完成</h1>
+                    <p>确认前请仔细核对所有信息。</p>
+                </header>
+
+                <div class="summary-box">
+                    <div class="summary-plan">
+                        <div class="summary-plan-info">
+                            <span class="summary-plan-name" id="summary-plan-name">街机（按月）</span>
+                            <button type="button" class="change-link" id="change-plan">修改</button>
+                        </div>
+                        <span class="summary-plan-price" id="summary-plan-price">$9/月</span>
+                    </div>
+                    <div class="summary-addons" id="summary-addons"></div>
+                </div>
+
+                <div class="summary-total">
+                    <span class="total-label" id="total-label">总计（每月）</span>
+                    <span class="total-price" id="total-price">$9/月</span>
+                </div>
+            </section>
+
+            <!-- 步骤 5：致谢 -->
+            <section class="form-step step-thanks" data-step="5">
+                <img src="./image/icon-thank-you.svg" alt="" class="thanks-icon">
+                <h1>谢谢您！</h1>
+                <p>感谢您确认订阅！希望您在我们的平台上玩得开心。如需任何支持，请随时发送邮件至 <a href="mailto:support@loregaming.com">support@loregaming.com</a>。</p>
+            </section>
+
+            <!-- 底部操作按钮 -->
+            <div class="actions">
+                <button type="button" class="btn-back" id="back-btn">上一步</button>
+                <button type="button" class="btn-next" id="next-btn">下一步</button>
+                <button type="button" class="btn-confirm" id="confirm-btn" hidden>确认</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/index.js"></script>
+</body>
+</html>
